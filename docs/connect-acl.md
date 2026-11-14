@@ -141,7 +141,7 @@ ForwardV2 carries the opener's `agent_id` plus an ML-DSA-65 signature over the h
 
 1. Confirms the header names this machine as the recipient (`recipient_machine_id` binding — prevents replay to a different machine).
 2. Checks the freshness window: `issued_at_ms` must be within `[now − 60s, now + 5s skew]` (prevents replay after the TTL).
-3. Looks up the opener's `agent_id`: first in the discovery cache, then — on a miss — in the ADR 0089 evidence store; evidence-sourced admission requires all conditions in the [#1107 design note](../design/1107-forward-opener-evidence.md) and is for **owner trust only**: only a `principal = "owner"` entry that lists the target admits such an opener. An exact-pair entry or a grant entry does not, at admission or at the re-check of a live stream.
+3. Looks up the opener's `agent_id`: first in the discovery cache, then — on a miss — in the ADR 0089 evidence store; evidence-sourced admission requires all conditions in the [#1107 design note](design/1107-forward-opener-evidence.md) and is for **owner trust only**: only a `principal = "owner"` entry that lists the target admits such an opener. An exact-pair entry or a grant entry does not, at admission or at the re-check of a live stream.
 4. Confirms the agent is on the transport-authenticated machine (`machine_id` match).
 5. Verifies the ML-DSA-65 signature against the looked-up key, checking that the key hashes to the claimed `agent_id` (binding).
 6. Evaluates the attested agent's **real trust** via the contact store — a Blocked agent is denied (attestation complements, not replaces, the trust + ACL layers).

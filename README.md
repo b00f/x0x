@@ -355,7 +355,7 @@ x0x start --name bob          # they connect with zero bootstrap configuration
 
 ```toml
 [dependencies]
-x0x = "0.40"
+x0x = "0.48"
 ```
 
 ```rust
